@@ -3,19 +3,27 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
-
-    <h1>Enregistrer un nouvel utilisateur</h1>
-
-    {{ form_start(registrationForm) }}
-
-    {{ form_row(registrationForm.email) }}
-    {{ form_row(registrationForm.plainPassword, {
-        label: 'Password'
-    }) }}
-
-    <button type="submit" class="btn btn-primary">Register</button>
-    {{ form_end(registrationForm) }}
+    <div class="container center">
+        <h1>Enregistrer un nouvel utilisateur</h1>
+        {{ form_start(registrationForm, {'attr': {'class': 'row'}}) }}
+        <div class="input-field col s12 m6 l6 offset-m3 offset-l3">
+            {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'Adresse email'}}) }}
+            <span class="error">{{ form_errors(registrationForm.email) }}</span>
+        </div>
+        <br>
+        <div class="input-field col s12 m6 l6 offset-m3 offset-l3">
+            {{ form_widget(registrationForm.username, {'attr': {'placeholder': 'Nom d\'utilisateur'}}) }}
+            <span class="error">{{ form_errors(registrationForm.username) }}</span>
+        </div>
+        <br>
+        <div class="input-field col s12 m6 l6 offset-m3 offset-l3">
+            {{ form_widget(registrationForm.plainPassword, {'attr': {'placeholder': 'Mot de passe'}}) }}
+            <span class="error">{{ form_errors(registrationForm.plainPassword) }}</span>
+        </div>
+        <br>
+        <div class="input-field col s12">
+            <input type="submit" name="" class="btn btn-primary" value="Enregistrer">
+        </div>
+        {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}
