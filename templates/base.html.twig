@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://bootswatch.com/3/slate/bootstrap.min.css">
+        <style>
+            body {
+                background:white;
+            }
+            .container {
+                align-items: center;
+                justify-content: center; }
+        </style>
+    </head>
+
+    <body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" >GPhy Diplômés</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Connexion</a></li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <div class="container">  {% block body %}{% endblock %}</div>
+    </body>
+</html>
