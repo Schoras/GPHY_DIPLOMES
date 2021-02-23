@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
@@ -18,7 +19,9 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class,['attr'=>[
+                'class'=>'form-control'
+            ]])
             ->add('username', TextType::class, [
                 'constraints' => [
                     new Length([
@@ -26,6 +29,9 @@ class RegistrationFormType extends AbstractType
                         'minMessage' => 'Votre nom d\'utilisateur doit contenir au moins {{ limit }} caractères.',
                     ]),
                 ],
+                'attr'=>[
+                    'class'=>'form-control'
+                ]
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
@@ -33,7 +39,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veillez saisi un mot de passe valide.',
+                        'message' => 'Veuillez saisi un mot de passe valide.',
                     ]),
                     new Length([
                         'min' => 6,
@@ -42,8 +48,19 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                'attr'=>[
+                    'class'=>'form-control'
+                ]
             ])
-        ;
+            ->add('save', SubmitType::class, ['label' => 'Enregistrer',
+                'attr'=>[
+                    'class'=>'btn btn-primary'
+                ]])
+            ->add('cancel', SubmitType::class, ['label'=>'Annuler',
+                'attr'=>[
+                    'class'=>'btn btn-danger',
+                    'formnovalidate'=> 'formnovalidate'
+                ]]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
