@@ -24,11 +24,11 @@
                                 <td>{{ user.username }}</td>
                                 <td>
                                     <span class="badge badge-info">
-                                        Admin.
+                                        Lorem Ipsum
                                     </span>
                                 </td>
                                 <td>
-                                    <a href=""><span class="badge badge-danger">Supprimer</span></a>
+                                    <span class="badge badge-danger">Supprimer</span></a>
                                 </td>
                             </tr>
                             {% set i = i+1 %}
@@ -37,6 +37,9 @@
                     {{ knp_pagination_render(users) }}
                 </div>
             </div>
+            <form action="{{ url('app_register') }}">
+                <button type="submit" class="btn btn-primary">Ajouter un utilisateur</button>
+            </form>
         </div>
     </div>
 {% endblock %}

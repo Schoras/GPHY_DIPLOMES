@@ -5,21 +5,21 @@ namespace src\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Mission
+ * Emploi
  *
- * @ORM\Table(name="mission", indexes={@ORM\Index(name="FK_EFFECTUE", columns={"ID_CONTRAT"}), @ORM\Index(name="FK_SAISIE3", columns={"ID_O"}), @ORM\Index(name="FK_DANS", columns={"ID_ENTREPRISE"})})
+ * @ORM\Table(name="emploi", indexes={@ORM\Index(name="FK_SAISIE2", columns={"ID_O"}), @ORM\Index(name="FK_CONTRACT", columns={"ID_ENTREPRISE"}), @ORM\Index(name="FK_SIGNE", columns={"NUM_ETUD"})})
  * @ORM\Entity
  */
-class Mission
+class Emploi
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="ID_M", type="integer", nullable=false)
+     * @ORM\Column(name="ID_CONTRAT", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idM;
+    private $idContrat;
 
     /**
      * @var int
@@ -31,9 +31,9 @@ class Mission
     /**
      * @var int
      *
-     * @ORM\Column(name="ID_CONTRAT", type="integer", nullable=false)
+     * @ORM\Column(name="NUM_ETUD", type="integer", nullable=false)
      */
-    private $idContrat;
+    private $numEtud;
 
     /**
      * @var int
@@ -45,16 +45,23 @@ class Mission
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="DEBUT", type="date", nullable=true)
+     * @ORM\Column(name="DEBUT_C", type="date", nullable=true)
      */
-    private $debut;
+    private $debutC;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="FIN", type="date", nullable=true)
+     * @ORM\Column(name="FIN_C", type="date", nullable=true)
      */
-    private $fin;
+    private $finC;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="TYPE_CONTRAT", type="string", length=20, nullable=true)
+     */
+    private $typeContrat;
 
     /**
      * @var \DateTime|null
