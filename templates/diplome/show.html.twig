@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Diplome{% endblock %}
+
+{% block body %}
+    <h1>Diplome</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>NumEtud</th>
+                <td>{{ diplome.numEtud }}</td>
+            </tr>
+            <tr>
+                <th>IdO</th>
+                <td>{{ diplome.idO }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ diplome.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ diplome.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Promo</th>
+                <td>{{ diplome.promo }}</td>
+            </tr>
+            <tr>
+                <th>NomUsage</th>
+                <td>{{ diplome.nomUsage }}</td>
+            </tr>
+            <tr>
+                <th>PrenomPv</th>
+                <td>{{ diplome.prenomPv }}</td>
+            </tr>
+            <tr>
+                <th>DateMj</th>
+                <td>{{ diplome.dateMj ? diplome.dateMj|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ diplome.commentaire }}</td>
+            </tr>
+            <tr>
+                <th>NiveauDiplome</th>
+                <td>{{ diplome.niveauDiplome }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ diplome.email }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ diplome.telephone }}</td>
+            </tr>
+            <tr>
+                <th>ReseauSocial</th>
+                <td>{{ diplome.reseauSocial }}</td>
+            </tr>
+            <tr>
+                <th>DateDeces</th>
+                <td>{{ diplome.dateDeces ? diplome.dateDeces|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>SituationRs</th>
+                <td>{{ diplome.situationRs }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('diplome_index') }}">back to list</a>
+
+    <a href="{{ path('diplome_edit', {'numEtud': diplome.numEtud}) }}">edit</a>
+
+    {{ include('diplome/_delete_form.html.twig') }}
+{% endblock %}

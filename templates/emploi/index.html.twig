@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Emploi index{% endblock %}
+
+{% block body %}
+    <h1>Emploi index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdContrat</th>
+                <th>IdEntreprise</th>
+                <th>NumEtud</th>
+                <th>IdO</th>
+                <th>DebutC</th>
+                <th>FinC</th>
+                <th>TypeContrat</th>
+                <th>DateMj</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for emploi in emplois %}
+            <tr>
+                <td>{{ emploi.idContrat }}</td>
+                <td>{{ emploi.idEntreprise }}</td>
+                <td>{{ emploi.numEtud }}</td>
+                <td>{{ emploi.idO }}</td>
+                <td>{{ emploi.debutC ? emploi.debutC|date('Y-m-d') : '' }}</td>
+                <td>{{ emploi.finC ? emploi.finC|date('Y-m-d') : '' }}</td>
+                <td>{{ emploi.typeContrat }}</td>
+                <td>{{ emploi.dateMj ? emploi.dateMj|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('emploi_show', {'idContrat': emploi.idContrat}) }}">show</a>
+                    <a href="{{ path('emploi_edit', {'idContrat': emploi.idContrat}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('emploi_new') }}">Create new</a>
+{% endblock %}
