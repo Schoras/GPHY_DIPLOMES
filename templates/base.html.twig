@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+    <html>
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
@@ -18,15 +18,33 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" >GPhy Diplômés</a>
+                <a class="navbar-brand" href="/" >GPhy Diplômés</a>
             </div>
+
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Connexion</a></li>
+                {% if app.user %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="{{ url('panel') }}" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.email }}</a>
+                    </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item dropdown">
+                        <a class="nav-link" href="{{ url('admin') }}" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
+                </li>
+                    {% endif %}
+                {% endif %}
+                {% if app.user %}
+                    <li><a href="/logout">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="/login">Connexion</a></li>
+                {% endif %}
             </ul>
         </div>
         </div>
     </nav>
 
-    <div class="container">  {% block body %}{% endblock %}</div>
+    <div class="container">
+        {% block body %}
+        {% endblock %}
+    </div>
     </body>
-</html>
+    </html>

@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Panneau d'administration{% endblock %}
+
+{% block body %}
+    <div>
+        <div class="jumbotron">
+            <div class="row">
+                <div class="table-hover">
+                    <h3>Utilisateurs</h3>
+                    <table class="table table-hover">
+                        <tr >
+                            <th>ID</th>
+                            <th>Adresse email</th>
+                            <th>Nom d'utilisateur</th>
+                            <th>Roles</th>
+                            <th>Actions</th>
+                        </tr>
+                        {% set i = 1 %}
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ i }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.username }}</td>
+                                <td>
+                                    <span class="badge badge-info">
+                                        Lorem Ipsum
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-danger">Supprimer</span></a>
+                                </td>
+                            </tr>
+                            {% set i = i+1 %}
+                        {% endfor %}
+                    </table>
+                    {{ knp_pagination_render(users) }}
+                </div>
+            </div>
+            <form action="{{ url('app_register') }}">
+                <button type="submit" class="btn btn-primary">Ajouter un utilisateur</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
